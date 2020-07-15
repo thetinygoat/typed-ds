@@ -3,5 +3,8 @@ node_js:
   - 12
 
 install: npm install
+before_script: 
+  - npm i -g typescript
+  - npm link typescript
 script: npm test
 after_success: npm run coverage
