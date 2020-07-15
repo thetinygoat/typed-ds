@@ -1,6 +1,8 @@
 # Typed-ds
 
-[![Build Status](https://travis-ci.com/thetinygoat/typed-ds.svg?branch=master)](https://travis-ci.com/thetinygoat/typed-ds) [![Coverage Status](https://coveralls.io/repos/github/thetinygoat/typed-ds/badge.svg?branch=master)](https://coveralls.io/github/thetinygoat/typed-ds?branch=master)
+[![Build Status](https://travis-ci.com/thetinygoat/typed-ds.svg?branch=master)](https://travis-ci.com/thetinygoat/typed-ds) [![Coverage Status](https://coveralls.io/repos/github/thetinygoat/typed-ds/badge.svg?branch=master)](https://coveralls.io/github/thetinygoat/typed-ds?branch=master) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
 
 Typed-ds is an implementation of useful and commonly used data structres written in [Typescript](https://www.typescriptlang.org/).
 
