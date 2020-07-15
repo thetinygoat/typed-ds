@@ -118,6 +118,7 @@ export class SinglyLinkedList {
             if (index === this.size) {
                 this.Add(data)
             }
+            return
         }
 
         let prev: LLNode = null
