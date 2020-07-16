@@ -1,164 +1,164 @@
 class LLNode<T> {
-    data: T
-    next: LLNode<T>
+    data: T;
+    next: LLNode<T>;
     constructor(data: T) {
-        this.data = data
-        this.next = null
+        this.data = data;
+        this.next = null;
     }
 }
 export class SinglyLinkedList<T> {
-    private head: LLNode<T>
-    private tail: LLNode<T>
-    private size: number
+    private head: LLNode<T>;
+    private tail: LLNode<T>;
+    private size: number;
 
     constructor() {
-        this.head = null
-        this.tail = null
-        this.size = 0
+        this.head = null;
+        this.tail = null;
+        this.size = 0;
     }
     // Add appends a value to the end of the list
     Add(data: T): void {
-        const newLLNode = new LLNode(data)
+        const newLLNode = new LLNode(data);
         if (this.size === 0) {
-            this.head = newLLNode
-            this.tail = newLLNode
+            this.head = newLLNode;
+            this.tail = newLLNode;
         } else {
-            this.tail.next = newLLNode
-            this.tail = newLLNode
+            this.tail.next = newLLNode;
+            this.tail = newLLNode;
         }
-        this.size++
+        this.size++;
     }
 
     // Append appends a value to the end of list same as add
     Append(data: T): void {
-        this.Add(data)
+        this.Add(data);
     }
 
     // Prepends prepends a value
     Prepend(data: T): void {
-        const newLLNode = new LLNode(data)
-        newLLNode.next = this.head
-        this.head = newLLNode
+        const newLLNode = new LLNode(data);
+        newLLNode.next = this.head;
+        this.head = newLLNode;
         if (this.size === 0) {
-            this.tail = newLLNode
+            this.tail = newLLNode;
         }
 
-        this.size++
+        this.size++;
     }
     // Get returns element at index
     Get(index: number): T {
         if (!this.withinRange(index)) {
-            return null
+            return null;
         }
-        if (index === 0) return this.head.data
-        else if (index === this.size - 1) return this.tail.data
-        let element = this.head
+        if (index === 0) return this.head.data;
+        else if (index === this.size - 1) return this.tail.data;
+        let element = this.head;
         for (let i = 0; i < index; i++) {
-            element = element.next
+            element = element.next;
         }
-        return element.data
+        return element.data;
     }
 
     // Remove removes the element at a given index
     Remove(index: number): void {
-        if (!this.withinRange(index)) return
+        if (!this.withinRange(index)) return;
 
         if (this.size === 1) {
-            this.Clear()
-            return
+            this.Clear();
+            return;
         }
 
-        let prev: LLNode<T> = null
-        let element = this.head
+        let prev: LLNode<T> = null;
+        let element = this.head;
         for (let i = 0; i < index; i++) {
-            prev = element
-            element = element.next
+            prev = element;
+            element = element.next;
         }
 
         if (element === this.head) {
-            this.head = element.next
+            this.head = element.next;
         }
         if (element === this.tail) {
-            this.tail = prev
+            this.tail = prev;
         }
         if (prev !== null) {
-            prev.next = element.next
+            prev.next = element.next;
         }
-        element = null
-        this.size--
+        element = null;
+        this.size--;
     }
 
     // Contains returns true if data is found in the list else false
     Contains(data: T): boolean {
-        if (data === null || data === undefined) return true
-        if (this.size == 0) return false
-        let element = this.head
+        if (data === null || data === undefined) return true;
+        if (this.size === 0) return false;
+        let element = this.head;
         while (element !== null) {
             if (element.data === data) {
-                return true
+                return true;
             }
-            element = element.next
+            element = element.next;
         }
-        return false
+        return false;
     }
 
     // Empty return true if list is empty
     Empty(): boolean {
-        return this.size === 0
+        return this.size === 0;
     }
 
     // Size returns size of the list
     Size(): number {
-        return this.size
+        return this.size;
     }
 
     // Insert inserts data at a specified index
     Insert(index: number, data: T): void {
         if (!this.withinRange(index)) {
             if (index === this.size) {
-                this.Add(data)
+                this.Add(data);
             }
-            return
+            return;
         }
 
-        let prev: LLNode<T> = null
-        let element = this.head
+        let prev: LLNode<T> = null;
+        let element = this.head;
         for (let i = 0; i < index; i++) {
-            prev = element
-            element = element.next
+            prev = element;
+            element = element.next;
         }
 
         if (element === this.head) {
-            const newLLNode = new LLNode(data)
-            newLLNode.next = this.head
-            this.head = newLLNode
+            const newLLNode = new LLNode(data);
+            newLLNode.next = this.head;
+            this.head = newLLNode;
         } else {
-            const temp = prev.next
-            const newLLNode = new LLNode(data)
-            prev.next = newLLNode
-            newLLNode.next = temp
+            const temp = prev.next;
+            const newLLNode = new LLNode(data);
+            prev.next = newLLNode;
+            newLLNode.next = temp;
         }
-        this.size++
+        this.size++;
     }
 
     // Values returns an array of all the elemnts in a list
     Values(): T[] {
-        let values: T[] = []
-        let element = this.head
+        const values: T[] = [];
+        let element = this.head;
         while (element != null) {
-            values.push(element.data)
-            element = element.next
+            values.push(element.data);
+            element = element.next;
         }
-        return values
+        return values;
     }
 
     Clear(): void {
         this.size = 0;
-        this.head = null
-        this.tail = null
+        this.head = null;
+        this.tail = null;
     }
 
     private withinRange(index: number): boolean {
-        return index >= 0 && index < this.size
+        return index >= 0 && index < this.size;
     }
 }
