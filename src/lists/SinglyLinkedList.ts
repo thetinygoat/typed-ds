@@ -1,14 +1,14 @@
-class LLNode {
-    data: any
-    next: LLNode
-    constructor(data: any) {
+class LLNode<T> {
+    data: T
+    next: LLNode<T>
+    constructor(data: T) {
         this.data = data
         this.next = null
     }
 }
-export class SinglyLinkedList {
-    private head: LLNode
-    private tail: LLNode
+export class SinglyLinkedList<T> {
+    private head: LLNode<T>
+    private tail: LLNode<T>
     private size: number
 
     constructor() {
@@ -17,7 +17,7 @@ export class SinglyLinkedList {
         this.size = 0
     }
     // Add appends a value to the end of the list
-    Add(data: any): void {
+    Add(data: T): void {
         const newLLNode = new LLNode(data)
         if (this.size === 0) {
             this.head = newLLNode
@@ -30,12 +30,12 @@ export class SinglyLinkedList {
     }
 
     // Append appends a value to the end of list same as add
-    Append(data: any): void {
+    Append(data: T): void {
         this.Add(data)
     }
 
     // Prepends prepends a value
-    Prepend(data: any): void {
+    Prepend(data: T): void {
         const newLLNode = new LLNode(data)
         newLLNode.next = this.head
         this.head = newLLNode
@@ -46,7 +46,7 @@ export class SinglyLinkedList {
         this.size++
     }
     // Get returns element at index
-    Get(index: number): any {
+    Get(index: number): T {
         if (!this.withinRange(index)) {
             return null
         }
@@ -68,7 +68,7 @@ export class SinglyLinkedList {
             return
         }
 
-        let prev: LLNode = null
+        let prev: LLNode<T> = null
         let element = this.head
         for (let i = 0; i < index; i++) {
             prev = element
@@ -89,7 +89,7 @@ export class SinglyLinkedList {
     }
 
     // Contains returns true if data is found in the list else false
-    Contains(data: any): boolean {
+    Contains(data: T): boolean {
         if (data === null || data === undefined) return true
         if (this.size == 0) return false
         let element = this.head
@@ -113,7 +113,7 @@ export class SinglyLinkedList {
     }
 
     // Insert inserts data at a specified index
-    Insert(index: number, data: any): void {
+    Insert(index: number, data: T): void {
         if (!this.withinRange(index)) {
             if (index === this.size) {
                 this.Add(data)
@@ -121,7 +121,7 @@ export class SinglyLinkedList {
             return
         }
 
-        let prev: LLNode = null
+        let prev: LLNode<T> = null
         let element = this.head
         for (let i = 0; i < index; i++) {
             prev = element
@@ -142,8 +142,8 @@ export class SinglyLinkedList {
     }
 
     // Values returns an array of all the elemnts in a list
-    Values(): any[] {
-        let values: any[] = []
+    Values(): T[] {
+        let values: T[] = []
         let element = this.head
         while (element != null) {
             values.push(element.data)

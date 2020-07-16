@@ -1,17 +1,17 @@
-class LLNode {
-    data: any
-    prev: LLNode
-    next: LLNode
-    constructor(data: any) {
+class LLNode<T> {
+    data: T
+    prev: LLNode<T>
+    next: LLNode<T>
+    constructor(data: T) {
         this.data = data
         this.next = null;
         this.prev = null
     }
 }
 
-export class DoublyLinkedList {
-    private head: LLNode
-    private tail: LLNode
+export class DoublyLinkedList<T> {
+    private head: LLNode<T>
+    private tail: LLNode<T>
     private size: number
 
     constructor() {
@@ -20,7 +20,7 @@ export class DoublyLinkedList {
         this.size = 0
     }
     // Add adds the data to the end of the list
-    Add(data: any): void {
+    Add(data: T): void {
         const newLLNode = new LLNode(data)
         newLLNode.prev = this.tail
         if (this.size === 0) {
@@ -33,11 +33,11 @@ export class DoublyLinkedList {
         this.size++
     }
     // Append appends data to the list, same as add
-    Append(data: any): void {
+    Append(data: T): void {
         this.Add(data)
     }
     // Prepend prepends data to the list
-    Prepend(data: any): void {
+    Prepend(data: T): void {
         const newLLNode = new LLNode(data);
         newLLNode.next = this.head
         if (this.size === 0) {
@@ -50,7 +50,7 @@ export class DoublyLinkedList {
         this.size++;
     }
     // Gets returns item at the index
-    Get(index: number): any {
+    Get(index: number): T {
         if (!this.withinRange(index)) {
             return null
         }
@@ -77,7 +77,7 @@ export class DoublyLinkedList {
             this.Clear()
             return
         }
-        let element: LLNode = null
+        let element: LLNode<T> = null
         // check which traversal direction is fastest
         if ((this.size - index) < index) {
             element = this.tail
@@ -107,7 +107,7 @@ export class DoublyLinkedList {
         this.size--
     }
     // Contains checks if an item is present in the list
-    Contains(data: any): boolean {
+    Contains(data: T): boolean {
         if (this.size === 0) return false
         let element = this.head
         while (element != null) {
@@ -119,8 +119,8 @@ export class DoublyLinkedList {
         return false
     }
     // Values returns an array of values in the list
-    Values(): any[] {
-        let values: any[] = []
+    Values(): T[] {
+        let values: T[] = []
         let element = this.head
         while (element != null) {
             values.push(element.data)
@@ -137,15 +137,15 @@ export class DoublyLinkedList {
         return this.size
     }
     // Insert inserts data at index
-    Insert(index: number, data: any): void {
+    Insert(index: number, data: T): void {
         if (!this.withinRange(index)) {
             if (index === this.size) {
                 this.Add(data)
             }
             return
         }
-        let prev: LLNode = null
-        let element: LLNode = null
+        let prev: LLNode<T> = null
+        let element: LLNode<T> = null
         // check which tarversal direction is faster
         if ((this.size - index) < index) {
             element = this.tail
